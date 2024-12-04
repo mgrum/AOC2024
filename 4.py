@@ -19,6 +19,21 @@ def find_xmas(table):
 
     return count
 
+def find_x_mas(table):
+    count = 0
+    rows = len(table)
+    cols = len(table[0])
+
+    for i in range(1, rows - 1):
+        for j in range(1, cols - 1):
+            if not table[i][j] == 'A':
+                continue
+            check = table[i-1][j-1] + table[i-1][j+1] + table[i+1][j-1] + table[i+1][j+1]
+            if check.count('M') == 2 and check.count('S') == 2 and check[0] != check[3]:
+                count += 1
+
+    return count
+
 table = [
     "SSSMMAASASAMXSSMSMMSSSSSSMSSMMMSMSAXMAMASXXXXMXMXSXXXMAMMSSSSSSXXAMXMSSXMAXMMXMMSSSMSAMXMXSXMSMSSSXMMSAMMSAMXMSMMMXSASMMMXMXMMXXAMXXMASXMXMS",
     "AMAASMMSASASAAMMAAXXAAXAAAAXASAAXSAMXSXASMSMAMSMASMSMXAXSAMXAAAMSXXAMXAAMXSAMAAXSAAAMAMAMASMMAASAXSAASAMXAAXAXAMAXXXAXAASMMASMASXMSXSAMAMMMS",
@@ -162,4 +177,18 @@ table = [
     "SASMMMASMMMSSSMSSXMSAMXSMMXMXMAMSSMMSXMSXMMSMMMSSMSMSMSXSXSSMMSMSSSXMASMMXSXSSXMXSXMSAMXMAMXAMSAMXXSXSMSSSSMSMSSMMMSMSXXSMMSSMSMXSAMXMASMXSX"
 ]
 
+table2 = [
+    ".M.S......",
+    "..A..MSMS.",
+    ".M.S.MAA..",
+    "..A.ASMSM.",
+    ".M.S.M....",
+    "..........",
+    "S.S.S.S.S.",
+    ".A.A.A.A..",
+    "M.M.M.M.M.",
+    "........."
+]
+
 print(find_xmas(table))
+print(find_x_mas(table))
